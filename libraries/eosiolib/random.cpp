@@ -1,11 +1,13 @@
-#include "random.hpp"
+#include "contracts/eosio/random.hpp"
 
-#include "system.h"
-#include "time.hpp"
-#include "transaction.h"
-#include "types.h"
+#include "capi/eosio/random.h"
 
-#include "random.h"
+#include "capi/eosio/system.h"
+#include "capi/eosio/transaction.h"
+#include "capi/eosio/types.h"
+#include "core/eosio/check.hpp"
+#include "core/eosio/time.hpp"
+#include "core/eosio/crypto.hpp"
 
 namespace eosio {
 
