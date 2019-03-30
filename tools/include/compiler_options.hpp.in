@@ -356,6 +356,8 @@ static void GetCompDefaults(std::vector<std::string>& copts) {
    if (!fnative_opt) {
       copts.emplace_back("--target=wasm32");
       copts.emplace_back("-ffreestanding");
+      copts.emplace_back("-nostdlib");
+      copts.emplace_back("-fno-builtin");
    } else {
       copts.emplace_back("-Wunused-command-line-argument");
 #ifdef __APPLE__
@@ -377,8 +379,8 @@ static void GetCompDefaults(std::vector<std::string>& copts) {
    if (!fasm_opt) {
       copts.emplace_back("-fno-threadsafe-statics");
 #ifdef CPP_COMP
-      copts.emplace_back("-fno-rtti");
       copts.emplace_back("-fno-exceptions");
+      copts.emplace_back("-fno-rtti");
       copts.emplace_back("-fmodules-ts");
 #endif
       copts.emplace_back("-DBOOST_DISABLE_ASSERTS");
@@ -459,6 +461,8 @@ static void GetLdDefaults(std::vector<std::string>& ldopts) {
 
       if (use_rt_opt || fquery_opt || fquery_server_opt || fquery_client_opt)
          ldopts.emplace_back("-lrt -lsf");
+      if (fquery_opt || fquery_server_opt || fquery_client_opt)
+         ldopts.emplace_back("-leosio_cmem");
 
    } else {
 #ifdef __APPLE__
